@@ -4,11 +4,11 @@
 
 int menu ();
 void captura (float *a, float *b);
-char continuar();
+int continuar();
 
 int main()
 {
-    char operacion=0;
+    int operacion=0;
     float a,b;
     
     while (operacion != 8)
@@ -19,32 +19,32 @@ int main()
 
         switch(operacion)
         {
-            case '+':
+            case 1:
                 
                 printf("\nLa suma de %.2f mas %.2f da como resultado: %.2f\n\n",a,b,a+b);
                 break;
-            case '-':
+            case 2:
                 
                 printf("\nLa resta de %.2f menos %.2f da como resultado: %.2f\n\n",a,b,a-b);
                 break;
-            case '*':
+            case 3:
                 
                 printf("\nLa multiplicación de %.2f por %.2f da como resultado: %.2f\n\n",a,b,a*b);
                 break;
-            case '/':
+            case 4:
                 
                 printf("\nLa división de %.2f entre %.2f da como resultado: %.2f\n\n",a,b,a/b);
                 break;
-            case '^':
+            case 5:
                 
                 printf("\nEl resultado de %.2f elevado a %.2f da como resultado: %.2f\n\n",a,b,pow(a,b));
                 break;
                 
-            case '%':
+            case 6:
                 
                 printf("\nEl módulo de %.2f entre %.2f da como resultado: %.2f\n\n",a,b,fmod(a,b));
                 break;
-            case 'R':
+            case 7:
                 
                 printf("\nLa raíz cuadrada de %.2f da como resultado: %.2f\n",a,sqrt(a));
                 printf("La raíz cuadrada de %.2f da como resultado: %.2f\n\n",b,sqrt(b));
@@ -55,6 +55,7 @@ int main()
     
     return 0;
 }
+
 void captura (float *a, float *b)
 {
     printf("Ingrese el primer número: ");
@@ -65,37 +66,37 @@ void captura (float *a, float *b)
 
 int menu ()
 {
-    char operacion=0;
+    int operacion;
     
     fflush(stdin);
     printf("\n¿Qué operación desea realizar?\n");
-    printf("+. Suma\n");
-    printf("-. Resta\n");
-    printf("*. Multiplicación\n");
-    printf("/. División\n");
-    printf("^. Potencia\n");
-    printf("%c. Modulo\n",'%');
-    printf("R. Raíz cuadrada\n");
-    printf("Ingrese su opción (+,-,*,...,R): ");
-    while(operacion != '+' && operacion != '-' && operacion != '*' && operacion != '/' && operacion != '^' && operacion != '%' && operacion != 'R' && operacion != 'r')
+    printf("1. Suma\n");
+    printf("2. Resta\n");
+    printf("3. Multiplicación\n");
+    printf("4. División\n");
+    printf("5. Potencia\n");
+    printf("6. Modulo\n");
+    printf("7. Raíz cuadrada\n");
+    printf("Ingrese su opción (1-7): ");
+    
+    while(operacion < 1 || operacion > 7)
     {
-        scanf("%c",&operacion);
+        scanf("%d",&operacion);
         
-        if (operacion != '+' && operacion != '-' && operacion != '*' && operacion != '/' && operacion != '^' && operacion != '%' && operacion != 'R' && operacion != 'r')
+        if (operacion < 1 || operacion > 7)
         {
             fflush(stdin);
             printf("\nOpción inválida\n");
-            printf("Ingrese una opción que sea válida (1-7)\n");
+            printf("Ingrese una opción que sea válida (1-7): ");
         }
     }
     
     return (operacion);
 }
 
-char continuar()
+int continuar()
 {
     int operacion;
-    char op;
     
     fflush(stdin);
     while (operacion != 1 && operacion != 2)
@@ -117,7 +118,6 @@ char continuar()
         }
     }
     printf("\n");
-    op=operacion;
     
-    return (op);
+    return (operacion);
 }
